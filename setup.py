@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-name, version = 'zc.wsgirunner', '0'
+name, version = 'zc.wsgirunner', '0.1.0'
 
 import sys
 

@@ -55,7 +55,7 @@ Logging sections
 
 Logging sections come in 2 flavors, ZConfig, and basic.  If a logging
 section has a ``config`` option, its value is passed `ZConfig's
-<https://pypi.python.org/pypi/ZConfig>`_ ``configureLoggers``
+<https://pypi.python.org/pypi/ZConfig>`_ [#zconfig]_ ``configureLoggers``
 method. Otherwise, the options in the logging section are passed to
 ``logging.basicConfig``.
 
@@ -70,7 +70,15 @@ from the configuration section.
 Changes
 *******
 
-0.1.0 (yyyy-mm-dd)
+0.1.0 (2014-04-12)
 ==================
 
 Initial release
+
+.. [#zconfig]
+    ZConfig provides the easiest way to create non-trivial logger
+    configurations.
+
+    Note, however, that ZConfig isn't a dependency of
+    ``zc.wsgirunner``, so if you want to use ZConfig to configure
+    logging, you need to install it separately.
