@@ -1,5 +1,5 @@
 Run WSGI applications defined by paste.deploy configurations
-************************************************************
+**************************************************************
 
 .. contents::
 
@@ -33,7 +33,7 @@ files.  For example, given a configuration file, ``paste.ini``::
   [logging:main]
   log = INFO
 
-We can run the applicaton with::
+We can run the applicaton with [#run]_::
 
   run-wsgi paste.ini
 
@@ -74,6 +74,11 @@ Changes
 ==================
 
 Initial release
+
+.. [#run]
+   You should use a tool like `ZDaemon <https://pypi.python.org/pypi/zdaemon>`_
+   or `supervisord <http://supervisord.org/>`_ with ``run-wsgi`` in production.
+   ``run-wsgi`` doesn't daemonize itself.
 
 .. [#zconfig]
     ZConfig provides the easiest way to create non-trivial logger
