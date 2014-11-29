@@ -41,6 +41,13 @@ If we want to run the debug pipeline::
 
   run-wsgi -a debug paste.ini
 
+Environment Variables
+=====================
+
+You can cause environment variables to be interpolated into your
+configuration by passing an ``-e`` option, and by including references
+of the form ``${NAME}``.
+
 Logging and configuration
 =========================
 
@@ -69,6 +76,8 @@ from the configuration section.
 
 Changes
 *******
+
+- Added support for envirnment-variable interpolation.
 
 0.1.0 (2014-04-12)
 ==================
