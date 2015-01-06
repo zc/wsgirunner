@@ -142,3 +142,33 @@ Finally, specify a module expression and a zonfig-based logger:
     >>> logging.basicConfig.call_args
     >>> ZConfig.configureLoggers.call_args
     call('\n<logger>\nlevel INFO\n</logger>')
+
+Environment variables
+---------------------
+
+We can optionally cause environment variables to be interpolated::
+
+  [DEFAULT]
+  global = dynamics
+
+  [app:main]
+  use = call:zc.wsgirunner.tests:App
+  number = ${NUMBER}
+
+  [server:main]
+  use = call:zc.wsgirunner.tests:Server
+  port = ${PORT_NUMBER}
+
+.. -> src
+
+    >>> with open('config', 'w') as f:
+    ...     _ = f.write(src)
+
+    >>> import os
+    >>> os.environ['NUMBER'] = '42'
+    >>> os.environ['PORT_NUMBER'] = '9673'
+
+    >>> run('-e config'.split())
+    Server(['__file__', 'global', 'here'], {'port': '9673'})
+    serving
+    App(['__file__', 'global', 'here'], {'number': '42'})

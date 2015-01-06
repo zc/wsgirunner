@@ -23,6 +23,11 @@ parser.add_argument(
 parser.add_argument(
     '--logging', '-l', default='main',
     help='logging configuration name in the configuration file')
+parser.add_argument(
+    '--use-environment', '-e', action="store_true",
+    help=
+    'Request interpolation of environment variables into the configuration'
+    )
 
 def main(args=None):
     if args is None:
@@ -30,6 +35,16 @@ def main(args=None):
     args = parser.parse_args(args)
 
     config = os.path.abspath(args.config)
+
+    if args.use_environment:
+        import re, tempfile
+        with open(config) as f:
+            config = re.sub(
+                r'\${(\w+)}', (lambda m: os.environ[m.group(1)]), f.read())
+            tf = tempfile.NamedTemporaryFile()
+            tf.write(config)
+            tf.flush()
+            config = tf.name
 
     cp = configparser.RawConfigParser()
     cp.read(config)
